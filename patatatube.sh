@@ -9,7 +9,7 @@ clear
 echo ""
 echo "What are you going to do today?"
 	PS3='Please enter your choice: '
-options=("Download" "Update" "Quit")
+options=("Download" "Update" "About" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -106,6 +106,12 @@ done
          ;;
 
 
+        "About")
+        echo "Made by pokeinalover and with ContratopDev's help because im still learning"
+        echo "Stay tuned for more content and stuff on my web page!" 
+        echo "pokeinalover.github.io"       
+        read -n 1 -s -r -p "Press anything to go back xd"
+        ;;
         "Quit")
 		clear
             exit
