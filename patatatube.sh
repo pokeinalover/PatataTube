@@ -78,7 +78,7 @@ do
 
           "Update")
     while true; do
-    read -p "Do you want to update Patatatube?" yn
+    read -p "Do you want to update Patatatube? (y/n)" yn
     case $yn in
         [Yy]* ) 
         echo "We are working on the update, please wait ~(*-*)~"
