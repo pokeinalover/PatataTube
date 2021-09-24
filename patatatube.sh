@@ -4,7 +4,7 @@ clear
     echo "Patatatube, content downloader"
     echo "Made by a patata"
     echo "and with a little help-"
-    sleep 4
+    sleep 1
 # haz un menu rikolino
 echo ""
 echo "What are you going to do today?"
@@ -29,7 +29,7 @@ do
     clear
     echo "Termux didn't find a way to your internal storage (╥﹏╥)"
     echo "Please give Termux access to your internal storage so that you can download content (✿◠‿◠) "
-    sleep 3
+    sleep 2
     termux-setup-storage
     fi
 
