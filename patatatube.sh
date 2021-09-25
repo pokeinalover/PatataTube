@@ -1,5 +1,19 @@
 #Limpiar la pantalla
 clear
+#Comprobar si existe la carpeta STORAGE, sino, se cofigura solo el Termux
+    if [ -d "$HOME/storage" ] 
+    then
+    clear
+    sleep 1
+    else
+    clear
+    echo "Termux didn't find a way to your internal storage (╥﹏╥)"
+    echo "Please give Termux access to your internal storage so that you can download content (✿◠‿◠) "
+    sleep 2
+    termux-setup-storage
+    fi
+    
+    
 #Escribe algo de presentacion
     echo "Patatatube, content downloader"
     echo "Version 0.9"
@@ -21,18 +35,8 @@ do
 
 
         "Download")
-#Comprobar si existe la carpeta STORAGE, sino, se cofigura solo el Termux
-    if [ -d "$HOME/storage" ] 
-    then
-    clear
-    sleep 1
-    else
-    clear
-    echo "Termux didn't find a way to your internal storage (╥﹏╥)"
-    echo "Please give Termux access to your internal storage so that you can download content (✿◠‿◠) "
-    sleep 2
-    termux-setup-storage
-    fi
+
+
 
 #Manda al usuario a su carpeta de Downloads
     cd storage/downloads
