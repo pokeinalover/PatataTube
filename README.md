@@ -10,6 +10,8 @@ Used youtube-dl
 ## Requirements
     pkg install python3
 
+    pkg install ffmpeg
+
     pip install youtube-dl
 
 ## Install
