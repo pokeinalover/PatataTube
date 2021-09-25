@@ -7,7 +7,7 @@ echo ""
     sleep 2
 #Escribe algo de presentacion
     echo "Welcome to patatatube"
-    echo "Version DEBUG-0.8"
+    echo "Version DEBUG-0.9"
     echo "Patatatube, content downloader"
     echo "Made by a patata"
     echo "and with a little help-"
@@ -55,7 +55,7 @@ do
         "Music")
         echo "We are downloading your content"
         sleep 1
-        youtube-dl --extract-audio --audio-format mp3 $url
+        youtube-dl -o '%(title)s.%(ext)s' --extract-audio --audio-format mp3 $url
         echo ""
         echo "Done! Enjoy your new song!(or that audio you downloaded for a prank or animatic xd)"
 		exit
@@ -66,7 +66,7 @@ do
            "Another")
            echo ""
            echo "Please choose your format (owo)"
-           youtube-dl -F $url
+           youtube-dl -o '%(title)s.%(ext)s' -F $url
            echo ""
            read -p "You may now write the format code: " fcode
            echo ""
