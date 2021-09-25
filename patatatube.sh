@@ -49,7 +49,7 @@ do
         "Music")
         echo "We are downloading your content"
         sleep 1
-        youtube-dl --extract-audio --audio-format mp3 $url
+        youtube-dl -o '%(title)s.%(ext)s'--extract-audio --audio-format mp3 $url
         clear
         echo "Done! Enjoy your new song!(or that audio you downloaded for a prank or animatic xd)"
 		exit
@@ -65,7 +65,7 @@ do
            read -p "You may now write the format code: " fcode
            clear
            echo "We are now downloading your content"
-           youtube-dl -f $fcode $url
+           youtube-dl '%(title)s.%(ext)s' -f $fcode $url
            clear
            echo "Done! Enjoy your content! uwu"
            echo ""
