@@ -65,7 +65,7 @@ do
            read -p "You may now write the format code: " fcode
            clear
            echo "We are now downloading your content"
-           youtube-dl '%(title)s.%(ext)s' -f $fcode $url
+           youtube-dl -o '%(title)s.%(ext)s' -f $fcode $url
            clear
            echo "Done! Enjoy your content! uwu"
            echo ""
