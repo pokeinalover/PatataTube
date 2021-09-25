@@ -2,6 +2,7 @@
 clear
 #Escribe algo de presentacion
     echo "Patatatube, content downloader"
+    echo "Version 0.8"
     echo "Made by a patata"
     echo "and with a little help-"
     sleep 1

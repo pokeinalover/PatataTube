@@ -1,4 +1,4 @@
-# PatataTube for Termux
+# PatataTube for Termux (0.8)
 
 Coded by pokeinalover
 
