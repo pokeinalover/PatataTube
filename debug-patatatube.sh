@@ -1,6 +1,19 @@
 #Limpiar la pantalla
 echo ""
 
+#Comprobar si existe la carpeta STORAGE, sino, se cofigura solo el Termux
+    if [ -d "$HOME/storage" ] 
+    then
+    echo ""
+    sleep 1
+    else
+    echo ""
+    echo "Termux didn't find a way to your internal storage (╥﹏╥)"
+    echo "Please give Termux access to your internal storage so that you can download content (✿◠‿◠) "
+    sleep 2
+    termux-setup-storage
+    fi
+
 #DEBUG VERSION
     echo "DEBUG VERSION"
     echo ""
@@ -27,18 +40,7 @@ do
 
 
         "Download")
-#Comprobar si existe la carpeta STORAGE, sino, se cofigura solo el Termux
-    if [ -d "$HOME/storage" ] 
-    then
-    echo ""
-    sleep 1
-    else
-    echo ""
-    echo "Termux didn't find a way to your internal storage (╥﹏╥)"
-    echo "Please give Termux access to your internal storage so that you can download content (✿◠‿◠) "
-    sleep 2
-    termux-setup-storage
-    fi
+
 
 #Manda al usuario a su carpeta de Downloads
     cd storage/downloads
