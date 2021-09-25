@@ -61,7 +61,7 @@ do
            echo "Please choose your format (owo)"
            youtube-dl -F $url
            echo ""
-           read -p "You may now write the format code" fcode
+           read -p "You may now write the format code: " fcode
            clear
            echo "We are now downloading your content"
            youtube-dl -f $fcode $url
