@@ -57,9 +57,18 @@ do
 
 
            "Another")
-                echo "Coming Soon (◑_◑)"
-                read -n 1 -s -r -p "Press anything to go back xd"
-                clear
+           clear
+           echo "Please choose your format (owo)"
+           youtube-dl -F $url
+           echo ""
+           read -p "You may now write the format code" fcode
+           clear
+           echo "We are now downloading your content"
+           youtube-dl -f $fcode $url
+           clear
+           echo "Done! Enjoy your content! uwu"
+           echo ""
+           exit
             ;;
 
           "Quit")
