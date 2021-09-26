@@ -18,7 +18,7 @@ clear
     figlet patata
     echo ""
     echo "Patatatube, content downloader"
-    echo "Version 0.9"
+    echo "Version 1.0"
     echo "Made by a patata"
     echo "and with a little help-"
     sleep 1

@@ -22,7 +22,7 @@ echo ""
     sleep 2
 #Escribe algo de presentacion
     echo "Welcome to patatatube"
-    echo "Version DEBUG-0.9"
+    echo "Version DEBUG-1.0"
     echo "Patatatube, content downloader"
     echo "Made by a patata"
     echo "and with a little help-"
