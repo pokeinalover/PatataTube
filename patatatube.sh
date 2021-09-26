@@ -104,6 +104,7 @@ do
        pkg install python3
        pkg install ffmpeg
        pip install youtube-dl
+       apt install figlet toilet
 
        rm -f -r PatataTube
        git clone https://github.com/pokeinalover/PatataTube
