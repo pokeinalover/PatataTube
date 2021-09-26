@@ -26,16 +26,25 @@ clear
 echo ""
 echo "What are you going to do today?"
 	PS3='Please enter your choice: '
-options=("Download" "Update" "About" "Quit")
+options=("FastMusic" "Download" "Update" "About" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
 
 
 
+        "FastMusic")
+        cd storage/downloads
+            read -p "Please enter the URL so that we can start downloading your content （っ＾▿＾）: " url
+            echo "We are downloading your content"
+        sleep 1
+        youtube-dl -o '%(title)s.%(ext)s' --extract-audio --audio-format mp3 $url
+        clear
+        echo "Done! Enjoy your new song!(or that audio you downloaded for a prank or animatic xd)"
+		exit
 
 
-
+    ;
         "Download")
 
 
