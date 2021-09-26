@@ -15,6 +15,8 @@ echo ""
     fi
 
 #DEBUG VERSION
+    figlet DEBUG
+    echo ""
     echo "DEBUG VERSION"
     echo ""
     sleep 2
@@ -106,7 +108,7 @@ do
        pkg install python3
        pkg install ffmpeg
        pip install youtube-dl
-       
+
        rm -f -r PatataTube
        git clone https://github.com/pokeinalover/PatataTube
        echo ""
