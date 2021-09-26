@@ -10,6 +10,8 @@ Used youtube-dl
 ## Requirements
 
     Everything you need will be installed by the updater inside patatatube
+    
+    Please, execute PatataTube and select Update option before using
 
 ## Install
 
