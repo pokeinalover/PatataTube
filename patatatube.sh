@@ -44,7 +44,7 @@ do
 		exit
 
 
-    ;
+    ;;
         "Download")
 
 
