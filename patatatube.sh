@@ -15,7 +15,7 @@ clear
     
     
 #Escribe algo de presentacion
-    figlet patatatube
+    figlet patata
     echo ""
     echo "Patatatube, content downloader"
     echo "Version 0.9"
