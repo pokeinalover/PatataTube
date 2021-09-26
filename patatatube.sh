@@ -98,6 +98,11 @@ do
         echo "We are working on the update, please wait ~(*-*)~"
         sleep 1
        cd $HOME
+       pkg upgrade
+       pkg install python3
+       pkg install ffmpeg
+       pip install youtube-dl
+
        rm -f -r PatataTube
        git clone https://github.com/pokeinalover/PatataTube
        clear
