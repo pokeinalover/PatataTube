@@ -1,5 +1,5 @@
 #header pwsh powershell
-$ver = "1.1"
+$ver = "1.2"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -209,6 +209,7 @@ elseif($menu -eq 3){
     write-host ""
     Write-host "Actualizando PatataTube..." -ForegroundColor Yellow
     write-host ""
+    Remove-Item patatatube-power.ps1
     Invoke-WebRequest -uri "https://raw.githubusercontent.com/pokeinalover/PatataTube/main/patatatube-power.ps1" -OutFile patatatube-power.ps1
     write-host "Actualizacion finalizada" -ForegroundColor Green
     exit
