@@ -1,5 +1,5 @@
 #header pwsh
-$ver = "1.0"
+$ver = "1.1"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -207,10 +207,10 @@ elseif($menu -eq 2){
 }
 elseif($menu -eq 3){
     write-host ""
-    Write-host "Actualizando PatataTube..."
+    Write-host "Actualizando PatataTube..." -ForegroundColor Yellow
     write-host ""
     Invoke-WebRequest -uri "https://raw.githubusercontent.com/pokeinalover/PatataTube/main/patatatube-power.ps1" -OutFile patatatube-power.ps1
-    write-host "Actualizacion finalizada"
+    write-host "Actualizacion finalizada" -ForegroundColor Green
     exit
 }
 elseif($menu -eq 4){
