@@ -1,5 +1,5 @@
 #header pwsh 
-$ver = "1.2.2"
+$ver = "1.3"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -156,6 +156,8 @@ while($exitmode){
     clear-host
 write-host "Patatatube Content Downloader $ver" -ForegroundColor Cyan
 write-host "By " -NoNewline
+write-host "Contratop" -ForegroundColor Cyan -NoNewline
+write-host "&" -NoNewline
 write-host "pokeinalover" -ForegroundColor Magenta
 write-host ""
 if($url){
