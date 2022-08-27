@@ -216,7 +216,7 @@ elseif($menu -eq 3){
 }
 elseif($menu -eq 4){
     write-host ""
-    write-host "About PatataTube" -ForegroundColor Magenta
+    write-host "About PatataTube $ver" -ForegroundColor Magenta
     write-host "Made by pokeinalover and with ContratopDev's help because im still learning"
     write-host "Stay tuned for more content and stuff on my web page!" 
     write-host "pokeinalover.github.io" 
