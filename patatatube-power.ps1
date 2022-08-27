@@ -1,5 +1,5 @@
 #header pwsh
-$ver = "1.2"
+$ver = "1.2.1"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -215,6 +215,8 @@ elseif($menu -eq 3){
     exit
 }
 elseif($menu -eq 4){
+    write-host ""
+    write-host "Abut PatataTube" -ForegroundColor Magenta
     write-host "Made by pokeinalover and with ContratopDev's help because im still learning"
     write-host "Stay tuned for more content and stuff on my web page!" 
     write-host "pokeinalover.github.io" 
