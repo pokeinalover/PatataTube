@@ -224,7 +224,7 @@ elseif($menu -eq 4){
 }
 elseif($menu -eq 5){
     clear-host
-    write-host "Saliendo de patatatube..."
+    write-host "Saliendo de patatatube..." -ForegroundColor Cyan
     exit
 }
 elseif($menu -eq "more"){
