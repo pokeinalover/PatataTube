@@ -207,12 +207,11 @@ elseif($menu -eq 2){
 }
 elseif($menu -eq 3){
     write-host ""
-    Write-Warning "Datos de actualizacion no disponible"
-    write-host "Contacta con la desarrolladora"
+    Write-host "Actualizando PatataTube..."
     write-host ""
-    #Invoke-WebRequest -uri "URL RAW" -OutFile patatatube-power.ps1
-    write-host "Continuando en 5 segundos..."
-    Start-Sleep -s 5
+    Invoke-WebRequest -uri "https://raw.githubusercontent.com/pokeinalover/PatataTube/main/patatatube-power.ps1" -OutFile patatatube-power.ps1
+    write-host "Actualizacion finalizada"
+    exit
 }
 elseif($menu -eq 4){
     write-host "Made by pokeinalover and with ContratopDev's help because im still learning"
@@ -254,7 +253,7 @@ elseif($menu -eq "more"){
             apt install wget
             pip instal youtube-dl
             python3 -m pip install -U yt-dlp
-            #Invoke-WebRequest -uri "URL RAW" -OutFile patatatube-power.ps1
+            Invoke-WebRequest -uri "https://raw.githubusercontent.com/pokeinalover/PatataTube/main/patatatube-power.ps1" -OutFile patatatube-power.ps1
             write-host ""
             write-host "Reparacion completada" -ForegroundColor Green
             exit
