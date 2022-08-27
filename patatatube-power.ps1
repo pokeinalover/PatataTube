@@ -73,7 +73,7 @@ else{
     $continue = read-host "Instalar FFMPEG? [install]"
     if($continue -eq "install"){
         apt update
-        apt install ffmepg
+        apt install ffmpeg
         write-host "Reinicie patatatube" -ForegroundColor Cyan
         exit
     }
