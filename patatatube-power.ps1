@@ -1,5 +1,5 @@
 #header pwsh 
-$ver = "1.3.1"
+$ver = "1.4 Development Preview"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
