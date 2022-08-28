@@ -1,5 +1,5 @@
 #header pwsh 
-$ver = "1.4.2 Development Preview"
+$ver = "1.4.3 Development Preview"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -116,17 +116,15 @@ else{
 
 if(test-path -path /sdcard/patatatube){
     Write-Warning "Version anterior detectada"
-    write-host "para el correcto funcionamiento hay que restablecer el directorio patatatube"
-    write-host "ATENCION: se va a borrar todo el contenido de /sdcard/patatatube" -ForegroundColor Red
+    write-host "para el correcto funcionamiento hay que restablecer los directorios deprecated patatatube"
+    write-host "ATENCION: se va a borrar todo el contenido de Patatatube de /root /Music y /Movies" -ForegroundColor Red
     $proceder = read-host "Reestablecer directorios patatatube? [continue]"
     if($proceder -eq "continue"){
-        write-host "Eliminando directorio patatatube..."
+        write-host "Eliminando directorio deprecated patatatube..."
         Remove-Item -Recurse -Force /sdcard/patatatube
-        write-host "Construyendo nuevos directorios..."
-        mkdir /sdcard/Movies/patatatube
-        mkdir /sdcard/Music/patatatube
-        mkdir /sdcard/Download/patatatube
-        write-host "Directorios nuevos construidos" -ForegroundColor Green
+        Remove-Item -Recurse -Force /sdcard/Movies/patatatube
+        Remove-Item -Recurse -Force /sdcard/Music/patatatube
+        write-host "Operacion completada" -ForegroundColor Green
         write-host "Reinicie patatatube" -ForegroundColor Cyan
         exit
     }
@@ -136,37 +134,6 @@ if(test-path -path /sdcard/patatatube){
     }
 }
 
-if(-not(test-path -path /sdcard/Movies/patatatube)){
-    Write-Warning "Directorio Movies no detectado"
-    $continue = read-host "Contruir ahora directorio Movie? [continue]"
-    if($continue -eq "continue"){
-        mkdir /sdcard/Movies/patatatube
-        write-host "Directorio construido" -ForegroundColor Green
-    }
-    else{
-        Write-Warning "Se requieren los nuevos directorios de trabajo para continuar"
-        exit
-    }
-}
-else{
-    write-host "Movie DIR OK" -ForegroundColor Green
-}
-
-if(-not(test-path -path /sdcard/Music/patatatube)){
-    Write-Warning "Directorio Music no detectado"
-    $continue = read-host "Contruir ahora directorio Music? [continue]"
-    if($continue -eq "continue"){
-        mkdir /sdcard/Music/patatatube
-        write-host "Directorio construido" -ForegroundColor Green
-    }
-    else{
-        Write-Warning "Se requieren los nuevos directorios de trabajo para continuar"
-        exit
-    }
-}
-else{
-    write-host "Music DIR OK" -ForegroundColor Green
-}
 
 if(-not(test-path -path /sdcard/Download/patatatube)){
     Write-Warning "Directorio Download/patatatube no detectado"
@@ -235,7 +202,7 @@ elseif($menu -eq 1){
     write-host "URL: $url"
     write-host ""
     write-host "Descargando MP3..." -ForegroundColor Cyan
-    yt-dlp -o '/sdcard/Music/patatatube/%(title)s.%(ext)s' --extract-audio --audio-format mp3 $url
+    yt-dlp -o '/sdcard/Download/patatatube/%(title)s.%(ext)s' --extract-audio --audio-format mp3 $url
     write-host ""
     write-host "Descarga finalizada" -ForegroundColor Cyan
     exit
@@ -247,7 +214,7 @@ elseif($menu -eq 2){
     clear-host
     write-host "URL: $url"
     write-host "Descargando la mejor version del video" -ForegroundColor Cyan
-    yt-dlp -S ext:mp4:m4a -o '/sdcard/Movies/patatatube/%(title)s.%(ext)s' $url
+    yt-dlp -S ext:mp4:m4a -o '/sdcard/Download/patatatube/%(title)s.%(ext)s' $url
     write-host "Descarga finalizada" -ForegroundColor Green
     exit
 }
