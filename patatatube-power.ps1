@@ -1,5 +1,5 @@
 #header pwsh 
-$ver = "1.4.3 Development Preview"
+$ver = "1.4.4 Development Preview"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -133,7 +133,44 @@ if(test-path -path /sdcard/patatatube){
         exit
     }
 }
-
+elseif(test-path -path /sdcard/Music/patatatube){
+    Write-Warning "Version anterior detectada"
+    write-host "para el correcto funcionamiento hay que restablecer los directorios deprecated patatatube"
+    write-host "ATENCION: se va a borrar todo el contenido de Patatatube de /root /Music y /Movies" -ForegroundColor Red
+    $proceder = read-host "Reestablecer directorios patatatube? [continue]"
+    if($proceder -eq "continue"){
+        write-host "Eliminando directorio deprecated patatatube..."
+        Remove-Item -Recurse -Force /sdcard/patatatube
+        Remove-Item -Recurse -Force /sdcard/Movies/patatatube
+        Remove-Item -Recurse -Force /sdcard/Music/patatatube
+        write-host "Operacion completada" -ForegroundColor Green
+        write-host "Reinicie patatatube" -ForegroundColor Cyan
+        exit
+    }
+    else{
+        Write-Warning "Se requieren los nuevos directorios de trabajo para continuar"
+        exit
+    }
+}
+elseif(test-path -path /sdcard/Movies/patatatube){
+    Write-Warning "Version anterior detectada"
+    write-host "para el correcto funcionamiento hay que restablecer los directorios deprecated patatatube"
+    write-host "ATENCION: se va a borrar todo el contenido de Patatatube de /root /Music y /Movies" -ForegroundColor Red
+    $proceder = read-host "Reestablecer directorios patatatube? [continue]"
+    if($proceder -eq "continue"){
+        write-host "Eliminando directorio deprecated patatatube..."
+        Remove-Item -Recurse -Force /sdcard/patatatube
+        Remove-Item -Recurse -Force /sdcard/Movies/patatatube
+        Remove-Item -Recurse -Force /sdcard/Music/patatatube
+        write-host "Operacion completada" -ForegroundColor Green
+        write-host "Reinicie patatatube" -ForegroundColor Cyan
+        exit
+    }
+    else{
+        Write-Warning "Se requieren los nuevos directorios de trabajo para continuar"
+        exit
+    }
+}
 
 if(-not(test-path -path /sdcard/Download/patatatube)){
     Write-Warning "Directorio Download/patatatube no detectado"
