@@ -149,7 +149,7 @@ if(-not(test-path -path /sdcard/Movies/patatatube)){
     }
 }
 else{
-    write-host "Movie DIR OK"
+    write-host "Movie DIR OK" -ForegroundColor Green
 }
 
 if(-not(test-path -path /sdcard/Music/patatatube)){
@@ -165,7 +165,7 @@ if(-not(test-path -path /sdcard/Music/patatatube)){
     }
 }
 else{
-    write-host "Music DIR OK"
+    write-host "Music DIR OK" -ForegroundColor Green
 }
 
 if(-not(test-path -path /sdcard/Download/patatatube)){
@@ -181,7 +181,7 @@ if(-not(test-path -path /sdcard/Download/patatatube)){
     }
 }
 else{
-    write-host "Download DIR OK"
+    write-host "Download DIR OK" -ForegroundColor Green
 }
 
 
