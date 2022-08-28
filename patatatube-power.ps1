@@ -1,5 +1,5 @@
 #header pwsh powershell
-$ver = "1.4.4 Development Preview"
+$ver = "1.5"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
