@@ -1,5 +1,5 @@
 #header pwsh 
-$ver = "1.4 Development Preview"
+$ver = "1.4.1 Development Preview"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -125,6 +125,7 @@ if(test-path -path /sdcard/patatatube){
         write-host "Construyendo nuevos directorios..."
         mkdir /sdcard/Movies/patatatube
         mkdir /sdcard/Music/patatatube
+        mkdir /sdcard/Download/patatatube
         write-host "Directorios nuevos construidos" -ForegroundColor Green
         write-host "Reinicie patatatube" -ForegroundColor Cyan
         exit
@@ -165,6 +166,22 @@ if(-not(pest-path -path /sdcard/Music/patatatube)){
 }
 else{
     write-host "Music DIR OK"
+}
+
+if(-not(test-path -path /sdcard/Download/patatatube)){
+    Write-Warning "Directorio Download/patatatube no detectado"
+    $continue = read-host "Contruir ahora directorio Download/patatatube? [continue]"
+    if($continue -eq "continue"){
+        mkdir /sdcard/Download/patatatube
+        write-host "Directorio construido" -ForegroundColor Green
+    }
+    else{
+        Write-Warning "Se requieren los nuevos directorios de trabajo para continuar"
+        exit
+    }
+}
+else{
+    write-host "Download DIR OK"
 }
 
 
@@ -330,8 +347,9 @@ elseif ($menu -eq "advanced"){
             write-host "Format Code: $fcode (Manual)"
         }
         write-host ""
+        write-host "Destino: /sdcard/Download/patatatube"
         write-host "Descargando el contenido..." -ForegroundColor Cyan
-        yt-dlp -o '/sdcard/Movies/patatatube/%(title)s.%(ext)s' -f $fcode $url
+        yt-dlp -o '/sdcard/Download/patatatube/%(title)s.%(ext)s' -f $fcode $url
         write-host ""
         write-host "Descarga finalizada" -ForegroundColor Cyan
         exit
