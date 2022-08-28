@@ -110,36 +110,63 @@ if(test-path -path /sdcard){
 }
 else{
     Write-Warning "Memoria no montada"
-    $mountcontinue = read-host "Deseas montar ahora la memoria? [mount]"
-    if($mountcontinue -eq "mount"){
-        termux-setup-storage
-        write-host "Reinicia patatatube" -ForegroundColor Cyan
-        exit
-    }
-    else{
-        Write-Warning "No se puede continuar sin memoria montada"
-        exit
-    }
+    write-host "Monta fuera de proot la memoria con el comando [termux-setup-storage]"
+    exit
 }
 
 if(test-path -path /sdcard/patatatube){
-    write-host "Patatatube Folder OK" -ForegroundColor Green
-}
-else{
-    Write-Warning "Parece que es la primera vez que usa Patatatube"
-    Write-host "Se va a crear una carpeta en la memoria llamada patatatube"
-    $continuefold = read-host "Crear carpeta ahora? [continue]"
-    if($continuefold -eq "continue"){
-        mkdir /sdcard/patatatube
-        write-host "Carpeta creada"
+    Write-Warning "Version anterior detectada"
+    write-host "para el correcto funcionamiento hay que restablecer el directorio patatatube"
+    write-host "ATENCION: se va a borrar todo el contenido de /sdcard/patatatube" -ForegroundColor Red
+    $proceder = read-host "Reestablecer directorios patatatube? [continue]"
+    if($proceder -eq "continue"){
+        write-host "Eliminando directorio patatatube..."
+        Remove-Item -Recurse -Force /sdcard/patatatube
+        write-host "Construyendo nuevos directorios..."
+        mkdir /sdcard/Movies/patatatube
+        mkdir /sdcard/Music/patatatube
+        write-host "Directorios nuevos construidos" -ForegroundColor Green
         write-host "Reinicie patatatube" -ForegroundColor Cyan
         exit
     }
     else{
-        Write-Warning "No se puede continuar sin una carpeta de salida"
+        Write-Warning "Se requieren los nuevos directorios de trabajo para continuar"
         exit
     }
 }
+
+if(-not(test-path -path /sdcard/Movies/patatatube)){
+    Write-Warning "Directorio Movies no detectado"
+    $continue = read-host "Contruir ahora directorio Movie? [continue]"
+    if($continue -eq "continue"){
+        mkdir /sdcard/Movies/patatatube
+        write-host "Directorio construido" -ForegroundColor Green
+    }
+    else{
+        Write-Warning "Se requieren los nuevos directorios de trabajo para continuar"
+        exit
+    }
+}
+else{
+    write-host "Movie DIR OK"
+}
+
+if(-not(pest-path -path /sdcard/Music/patatatube)){
+    Write-Warning "Directorio Music no detectado"
+    $continue = read-host "Contruir ahora directorio Music? [continue]"
+    if($continue -eq "continue"){
+        mkdir /sdcard/Music/patatatube
+        write-host "Directorio construido" -ForegroundColor Green
+    }
+    else{
+        Write-Warning "Se requieren los nuevos directorios de trabajo para continuar"
+        exit
+    }
+}
+else{
+    write-host "Music DIR OK"
+}
+
 
 write-host "All Check OK" -ForegroundColor Green
 Start-Sleep -s 1
@@ -191,7 +218,7 @@ elseif($menu -eq 1){
     write-host "URL: $url"
     write-host ""
     write-host "Descargando MP3..." -ForegroundColor Cyan
-    yt-dlp -o '/sdcard/patatatube/%(title)s.%(ext)s' --extract-audio --audio-format mp3 $url
+    yt-dlp -o '/sdcard/Music/patatatube/%(title)s.%(ext)s' --extract-audio --audio-format mp3 $url
     write-host ""
     write-host "Descarga finalizada" -ForegroundColor Cyan
     exit
@@ -203,7 +230,7 @@ elseif($menu -eq 2){
     clear-host
     write-host "URL: $url"
     write-host "Descargando la mejor version del video" -ForegroundColor Cyan
-    yt-dlp -S ext:mp4:m4a -o '/sdcard/patatatube/%(title)s.%(ext)s' $url
+    yt-dlp -S ext:mp4:m4a -o '/sdcard/Movies/patatatube/%(title)s.%(ext)s' $url
     write-host "Descarga finalizada" -ForegroundColor Green
     exit
 }
@@ -304,7 +331,7 @@ elseif ($menu -eq "advanced"){
         }
         write-host ""
         write-host "Descargando el contenido..." -ForegroundColor Cyan
-        yt-dlp -o '/sdcard/patatatube/%(title)s.%(ext)s' -f $fcode $url
+        yt-dlp -o '/sdcard/Movies/patatatube/%(title)s.%(ext)s' -f $fcode $url
         write-host ""
         write-host "Descarga finalizada" -ForegroundColor Cyan
         exit
