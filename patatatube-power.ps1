@@ -1,5 +1,5 @@
 #header pwsh 
-$ver = "1.4.1 Development Preview"
+$ver = "1.4.2 Development Preview"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -152,7 +152,7 @@ else{
     write-host "Movie DIR OK"
 }
 
-if(-not(pest-path -path /sdcard/Music/patatatube)){
+if(-not(test-path -path /sdcard/Music/patatatube)){
     Write-Warning "Directorio Music no detectado"
     $continue = read-host "Contruir ahora directorio Music? [continue]"
     if($continue -eq "continue"){
