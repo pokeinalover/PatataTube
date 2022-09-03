@@ -1,5 +1,5 @@
 #header pwsh powershell
-$ver = "1.6.2 (Development Preview)"
+$ver = "1.7"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -349,7 +349,7 @@ elseif($menu -eq "more"){
             write-host "Entrega finalizada"
             exit
         }
-        elseif($opcionsshdown -eq 2){
+        elseif($optionsshdown -eq 2){
             if(-not($url)){
                 geturl
             }
