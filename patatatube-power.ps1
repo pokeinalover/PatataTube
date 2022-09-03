@@ -1,5 +1,5 @@
 #header pwsh powershell
-$ver = "1.6.1 (Development Preview)"
+$ver = "1.6.2 (Development Preview)"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -344,7 +344,7 @@ elseif($menu -eq "more"){
             write-host "Descarga finalizada" -ForegroundColor Cyan
             ""
             write-host "Intentando enviar el archivo al destino..."
-            scp entrega.mp3 "$userssh@$ipssh:Desktop"
+            scp entrega.mp3 $userssh@$ipssh':Desktop'
             #Remove-Item entrega.mp3
             write-host "Entrega finalizada"
             exit
@@ -366,7 +366,7 @@ elseif($menu -eq "more"){
             write-host "Descarga finalizada" -ForegroundColor Cyan
             ""
             write-host "Intentando enviar el archivo al destino..."
-            scp entrega.mp4 "$userssh@$ipssh:Desktop"
+            scp entrega.mp4 $userssh@$ipssh':Desktop'
             #Remove-Item entrega.mp4
             write-host "Entrega finalizada"
             exit
