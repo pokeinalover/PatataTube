@@ -327,7 +327,7 @@ elseif($menu -eq "more"){
         write-host "[1] Musica"
         write-host "[2] Video"
         $optionsshdown = read-host "Seleccione una opcion"
-        if($optionssh -eq 1){
+        if($optionsshdown -eq 1){
             if(-not($url)){
                 geturl
             }
@@ -349,7 +349,7 @@ elseif($menu -eq "more"){
             write-host "Entrega finalizada"
             exit
         }
-        elseif($opcionssh -eq 2){
+        elseif($opcionsshdown -eq 2){
             if(-not($url)){
                 geturl
             }
