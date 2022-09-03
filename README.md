@@ -6,7 +6,7 @@ Content downloader made by a potato
 Used youtube-dl fork (yt-dlp)
 [Compatibility List](https://ytdl-org.github.io/youtube-dl/supportedsites.html)
 
-[![made-with-bash](https://img.shields.io/badge/Made%20with-Bash-1f425f.svg)](https://www.gnu.org/software/bash/) Compatible with Android PowerShelled Termux
+![PowerShell](https://img.shields.io/badge/PowerShell-%235391FE.svg?style=for-the-badge&logo=powershell&logoColor=white) Compatible with Android PowerShelled Termux
 ## Requirements
 
     PowerShelled Termux
