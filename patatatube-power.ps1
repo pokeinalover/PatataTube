@@ -1,4 +1,4 @@
-#header pwsh powershell
+#header pwsh powershell potatOS
 $ver = "1.7"
 Clear-Host
 write-host "Patatatube Power $ver"
