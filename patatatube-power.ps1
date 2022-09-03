@@ -1,5 +1,5 @@
 #header pwsh powershell
-$ver = "1.5"
+$ver = "1.6 (Development Preview)"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -283,6 +283,7 @@ elseif($menu -eq "more"){
     write-host ""
     Write-host "[repair] Reparar Patatatube Power"
     Write-host "[debugupdate] Actualiza desde github/contratop"
+    Write-host "[downssh] Descarga el contenido en local y envia por SSH (INESTABLE)"
     write-host "[AnyPrompt] Menu anterior"
     $menu2 = read-host "Escribe opcion"
     if($menu2 -eq "repair"){
@@ -316,6 +317,66 @@ elseif($menu -eq "more"){
            Start-Sleep -s 1
         }
     }
+    #####################################################
+    elseif($menu2 -eq "downssh"){
+        Clear-Host
+        Write-Warning "Esta funcion es experimental"
+        Write-host "Si estas aqui por error, pulsa Control + C"
+        Write-host "de momento solo admitido destinos SSH Windows"
+        ""
+        write-host "[1] Musica"
+        write-host "[2] Video"
+        $optionsshdown = read-host "Seleccione una opcion"
+        if($optionssh -eq 1){
+            if(-not($url)){
+                geturl
+            }
+            $userssh = read-host "Usuario SSH"
+            $ipssh = read-host "Direccion IP del destino"
+            clear-host
+            write-host "URL: $url"
+            write-host "Usuario Destino: $userssh"
+            write-host "IP Destino: $ipssh"
+            write-host ""
+            write-host "Descargando MP3..." -ForegroundColor Cyan
+            yt-dlp -o 'entrega.%(ext)s' --extract-audio --audio-format mp3 $url
+            write-host ""
+            write-host "Descarga finalizada" -ForegroundColor Cyan
+            ""
+            write-host "Intentando enviar el archivo al destino..."
+            scp entrega.mp3 $userssh@$ipssh:Desktop
+            Remove-Item entrega.mp3
+            write-host "Entrega finalizada"
+            exit
+        }
+        elseif($opcionssh -eq 2){
+            if(-not($url)){
+                geturl
+            }
+            $userssh = read-host "Usuario SSH"
+            $ipssh = read-host "Direccion IP del destino"
+            clear-host
+            write-host "URL: $url"
+            write-host "Usuario Destino: $userssh"
+            write-host "IP Destino: $ipssh"
+            write-host ""
+            write-host "Descargando la mejor version del video" -ForegroundColor Cyan
+            yt-dlp -S ext:mp4:m4a -o 'entrega.%(ext)s' $url
+            write-host ""
+            write-host "Descarga finalizada" -ForegroundColor Cyan
+            ""
+            write-host "Intentando enviar el archivo al destino..."
+            scp entrega.mp4 $userssh@$ipssh:Desktop
+            Remove-Item entrega.mp4
+            write-host "Entrega finalizada"
+            exit
+        }
+        else{
+            Write-Warning "Opcion no soportada"
+            exit
+        }
+    }
+    ####################################################
     elseif($menu2 -eq "debugupdate"){
         Write-Warning "Debug Updater"
         write-host "Only for developers" -ForegroundColor Yellow
