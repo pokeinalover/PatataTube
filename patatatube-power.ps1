@@ -208,7 +208,7 @@ write-host "Contratop" -ForegroundColor Cyan -NoNewline
 write-host " & " -NoNewline
 write-host "pokeinalover" -ForegroundColor Magenta -NoNewline
 write-host "" -NoNewline
-write-host "(Mostly by Contratop)" -ForegroundColor Green
+write-host " (Mostly by Contratop)" -ForegroundColor Green
 write-host ""
 if($url){
     write-host "URL: $url" -ForegroundColor Cyan
