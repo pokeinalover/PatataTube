@@ -1,5 +1,5 @@
 #header pwsh powershell potatOS
-$ver = "1.7.1 (Developer Preview)"
+$ver = "1.7.2 (Developer Preview)"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -346,8 +346,8 @@ elseif($menu -eq "more"){
             write-host "Descarga finalizada" -ForegroundColor Cyan
             ""
             write-host "Intentando enviar el archivo al destino..."
-            scp $archivename.mp3 $userssh@$ipssh':Desktop'
-            Remove-Item $archivename.mp3
+            scp "$archivename.mp3" $userssh@$ipssh':Desktop'
+            Remove-Item "$archivename.mp3"
             write-host "Entrega finalizada"
             exit
         }
@@ -370,9 +370,9 @@ elseif($menu -eq "more"){
             write-host "Descarga finalizada" -ForegroundColor Cyan
             ""
             write-host "Intentando enviar el archivo al destino..."
-            scp $archivename.mp4 $userssh@$ipssh':Desktop'
-            Remove-Item $archivename.mp4
-            Remove-Item $archivename.m4a
+            scp "$archivename.mp4" $userssh@$ipssh':Desktop'
+            Remove-Item "$archivename.mp4"
+            Remove-Item "$archivename.m4a"
             write-host "Entrega finalizada"
             exit
         }
