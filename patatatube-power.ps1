@@ -1,5 +1,5 @@
-#header pwsh powershell GlaDOS PotatOS
-$ver = "2.0"
+#header pwsh powershell GlaDOS PotatOS uwu
+$ver = "2.0.1"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -193,7 +193,7 @@ write-host "All Check OK" -ForegroundColor Green
 Start-Sleep -s 1
 # function ###############################################################
 function geturl{
-    $script:url = read-host "Paste your la URL here"
+    $script:url = read-host "Paste your URL here"
 }
 write-host ""
 write-host ""
