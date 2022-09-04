@@ -1,5 +1,5 @@
 #header pwsh powershell potatOS
-$ver = "1.8"
+$ver = "1.9"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -267,7 +267,7 @@ elseif($menu -eq 3){
 elseif($menu -eq 4){
     write-host ""
     write-host "About PatataTube $ver" -ForegroundColor Magenta
-    write-host "Made by pokeinalover and with ContratopDev's help because im still learning"
+    write-host "Made by pokeinalover and with ContratopDev's help because i'm still learning"
     write-host "Stay tuned for more content and stuff on my web page!" 
     write-host "pokeinalover.github.io" 
     Pause
