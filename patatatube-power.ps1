@@ -1,5 +1,5 @@
 #header pwsh powershell GlaDOS PotatOS
-$ver = "1.9"
+$ver = "2.0"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -10,16 +10,16 @@ if(Get-Command "python3"){
     write-host "Python3 OK" -ForegroundColor Green
 }
 else{
-    Write-Warning "Falta Python3"
-    $continue = read-host "Instalar Python3? [install]"
+    Write-Warning "Missing Python3"
+    $continue = read-host "Install Python3? [install]"
     if($continue -eq "install"){
         apt update
         apt install python3
-        write-host "Reinicie patatatube" -ForegroundColor Cyan
+        write-host "Please re-start patatatube" -ForegroundColor Cyan
         exit
     }
     else{
-        Write-Warning "Python3 es necesario para continuar"
+        Write-Warning "Python3 is required to continue"
         exit
     }
 }
@@ -31,35 +31,35 @@ if(Get-Command "yt-dlp" -ErrorAction SilentlyContinue){ # CHECK CORE ###########
 }
 else{
     if(Get-Command "pip" -ErrorAction SilentlyContinue){
-        Write-Warning "youtube-dl no detectado"
-        $confirm = read-host "descargar youtube-dl? [continue]"
+        Write-Warning "youtube-dl not found"
+        $confirm = read-host "Download youtube-dl? [continue]"
         if($confirm -eq "continue"){
-            write-host "Descargando engine Youtube-DL"
+            write-host "Downloading engine Youtube-DL"
             apt update
             python3 -m pip install -U yt-dlp # CORE HERE ################################
-            write-host "Reinicie patatatube" -ForegroundColor Cyan
+            write-host "Re-startpatatatube" -ForegroundColor Cyan
             exit
         }
         else{
-            Write-Warning "No puede continuar sin youtube-dl"
+            Write-Warning "youtube-dl is required to continue"
             exit
         }
 
     }
     else{
-        Write-Warning "pip no detectado"
-        $confirm = read-host "descargar pip y youtube-dl? [continue]"
+        Write-Warning "pip not found"
+        $confirm = read-host "Download pip and youtube-dl? [continue]"
         if($confirm -eq "continue"){
-            Write-host "Instalando pip"
+            Write-host "Installing pip"
             apt update
             apt install pip
-            write-host "Descargando engine Youtube-DL"
+            write-host "Downloading engine Youtube-DL"
             python3 -m pip install -U yt-dlp # REDOWNLOAD CORE ################################
-            write-host "Reinicie patatatube" -ForegroundColor Cyan
+            write-host "Re-startpatatatube" -ForegroundColor Cyan
             exit
         }
         else{
-            Write-Warning "No se puede continuar sin pip y sin verificar youtube-dl"
+            Write-Warning "pip and verifying youtube-dl are required to continue"
             exit
         }
     }
@@ -69,16 +69,16 @@ if(Get-Command "ffmpeg" -ErrorAction SilentlyContinue){
     write-host "FFMPEG OK" -ForegroundColor Green
 }
 else{
-    Write-Warning "Falta MMPEG"
-    $continue = read-host "Instalar FFMPEG? [install]"
+    Write-Warning "Missing MMPEG"
+    $continue = read-host "Install FFMPEG? [install]"
     if($continue -eq "install"){
         apt update
         apt install ffmpeg
-        write-host "Reinicie patatatube" -ForegroundColor Cyan
+        write-host "Re-start patatatube" -ForegroundColor Cyan
         exit
     }
     else{
-        Write-Warning "FFMPEG es necesario para continuar"
+        Write-Warning "FFMPEG is required to continue"
         exit
     }
 
@@ -93,11 +93,11 @@ else{
     if($continue -eq "install"){
         apt update
         apt install wget
-        write-host "Reinicie patatatube" -ForegroundColor Cyan
+        write-host "Re-start patatatube" -ForegroundColor Cyan
         exit
     }
     else{
-        Write-Warning "wget es necesario para continuar"
+        Write-Warning "wget is required to continue"
         exit
     }
 
@@ -109,78 +109,78 @@ if(test-path -path /sdcard){
     write-host "Memory Access OK" -ForegroundColor Green
 }
 else{
-    Write-Warning "Memoria no montada"
-    write-host "Monta fuera de proot la memoria con el comando [termux-setup-storage]"
+    Write-Warning "Memoy not assambled"
+    write-host "Use [termux-setup-storage] to reassamble memory outside proot"
     exit
 }
 
 if(test-path -path /sdcard/patatatube){
-    Write-Warning "Version anterior detectada"
-    write-host "para el correcto funcionamiento hay que restablecer los directorios deprecated patatatube"
-    write-host "ATENCION: se va a borrar todo el contenido de Patatatube de /root /Music y /Movies" -ForegroundColor Red
-    $proceder = read-host "Reestablecer directorios patatatube? [continue]"
+    Write-Warning "Old version found"
+    write-host "It is required to restablysh the deprecated patatatube directories for patatatube to work correctly"
+    write-host "WARNING: All the content in Patatatube de /root /Music y /Movies will be deleted" -ForegroundColor Red
+    $proceder = read-host "Reestablish directories in patatatube? [continue]"
     if($proceder -eq "continue"){
-        write-host "Eliminando directorio deprecated patatatube..."
+        write-host "Deleting directory deprecated patatatube..."
         Remove-Item -Recurse -Force /sdcard/patatatube
         Remove-Item -Recurse -Force /sdcard/Movies/patatatube
         Remove-Item -Recurse -Force /sdcard/Music/patatatube
-        write-host "Operacion completada" -ForegroundColor Green
-        write-host "Reinicie patatatube" -ForegroundColor Cyan
+        write-host "Task completed" -ForegroundColor Green
+        write-host "Re-start patatatube" -ForegroundColor Cyan
         exit
     }
     else{
-        Write-Warning "Se requieren los nuevos directorios de trabajo para continuar"
+        Write-Warning "The new working directories are required to continue"
         exit
     }
 }
 elseif(test-path -path /sdcard/Music/patatatube){
-    Write-Warning "Version anterior detectada"
-    write-host "para el correcto funcionamiento hay que restablecer los directorios deprecated patatatube"
-    write-host "ATENCION: se va a borrar todo el contenido de Patatatube de /root /Music y /Movies" -ForegroundColor Red
-    $proceder = read-host "Reestablecer directorios patatatube? [continue]"
+    Write-Warning "Old version found"
+    write-host "It is required to restablysh the deprecated patatatube directories for patatatube to work correctly"
+    write-host "WARNING: All the content in Patatatube de /root /Music y /Movies will be deleted" -ForegroundColor Red
+    $proceder = read-host "Reestablish directories in patatatube? [continue]"
     if($proceder -eq "continue"){
-        write-host "Eliminando directorio deprecated patatatube..."
+        write-host "Deleting directory deprecated patatatube..."
         Remove-Item -Recurse -Force /sdcard/patatatube
         Remove-Item -Recurse -Force /sdcard/Movies/patatatube
         Remove-Item -Recurse -Force /sdcard/Music/patatatube
-        write-host "Operacion completada" -ForegroundColor Green
-        write-host "Reinicie patatatube" -ForegroundColor Cyan
+        write-host "Task completed" -ForegroundColor Green
+        write-host "Re-start patatatube" -ForegroundColor Cyan
         exit
     }
     else{
-        Write-Warning "Se requieren los nuevos directorios de trabajo para continuar"
+        Write-Warning "The new working directories are required to continue"
         exit
     }
 }
 elseif(test-path -path /sdcard/Movies/patatatube){
-    Write-Warning "Version anterior detectada"
-    write-host "para el correcto funcionamiento hay que restablecer los directorios deprecated patatatube"
-    write-host "ATENCION: se va a borrar todo el contenido de Patatatube de /root /Music y /Movies" -ForegroundColor Red
-    $proceder = read-host "Reestablecer directorios patatatube? [continue]"
+    Write-Warning "Old version found"
+    write-host "It is required to restablysh the deprecated patatatube directories for patatatube to work correctly"
+    write-host "WARNING: All the content in Patatatube de /root /Music y /Movies will be deleted" -ForegroundColor Red
+    $proceder = read-host "Reestablish directories in patatatube? [continue]"
     if($proceder -eq "continue"){
-        write-host "Eliminando directorio deprecated patatatube..."
+        write-host "Deleting directory deprecated patatatube..."
         Remove-Item -Recurse -Force /sdcard/patatatube
         Remove-Item -Recurse -Force /sdcard/Movies/patatatube
         Remove-Item -Recurse -Force /sdcard/Music/patatatube
-        write-host "Operacion completada" -ForegroundColor Green
-        write-host "Reinicie patatatube" -ForegroundColor Cyan
+        write-host "Task completed" -ForegroundColor Green
+        write-host "Re-start patatatube" -ForegroundColor Cyan
         exit
     }
     else{
-        Write-Warning "Se requieren los nuevos directorios de trabajo para continuar"
+        Write-Warning "The new working directories are required to continue"
         exit
     }
 }
 
 if(-not(test-path -path /sdcard/Download/patatatube)){
-    Write-Warning "Directorio Download/patatatube no detectado"
-    $continue = read-host "Contruir ahora directorio Download/patatatube? [continue]"
+    Write-Warning "Unable to find directory Download/patatatube"
+    $continue = read-host "Create directory Download/patatatube? [continue]"
     if($continue -eq "continue"){
         mkdir /sdcard/Download/patatatube
-        write-host "Directorio construido" -ForegroundColor Green
+        write-host "The directory was created successfully" -ForegroundColor Green
     }
     else{
-        Write-Warning "Se requieren los nuevos directorios de trabajo para continuar"
+        Write-Warning "The new working directories are required to continue"
         exit
     }
 }
@@ -193,7 +193,7 @@ write-host "All Check OK" -ForegroundColor Green
 Start-Sleep -s 1
 # function ###############################################################
 function geturl{
-    $script:url = read-host "Pega la URL aqui"
+    $script:url = read-host "Paste your la URL here"
 }
 write-host ""
 write-host ""
@@ -206,26 +206,28 @@ write-host "Patatatube Content Downloader $ver" -ForegroundColor Cyan
 write-host "By " -NoNewline
 write-host "Contratop" -ForegroundColor Cyan -NoNewline
 write-host " & " -NoNewline
-write-host "pokeinalover" -ForegroundColor Magenta
+write-host "pokeinalover" -ForegroundColor Magenta -NoNewline
+write-host "" -NoNewline
+write-host "(Mostly by Contratop)" -ForegroundColor Green
 write-host ""
 if($url){
     write-host "URL: $url" -ForegroundColor Cyan
 }
 write-host ""
 if($url){
-    write-host "[url] Cambiar URL"
+    write-host "[url] Change URL"
 }
 else{
-    write-host "[url] Establecer URL"
+    write-host "[url] Stablish URL"
 }
-Write-host "[1] Music"
-Write-host "[2] Video"
-write-host "[3] Update"
+Write-host "[1] Music" -ForegroundColor Magenta
+Write-host "[2] Video" 
+write-host "[3] Update" -ForegroundColor Magenta
 write-host "[4] About"
-write-host "[5] Quit"
+write-host "[5] Quit" -ForegroundColor Magenta
 write-host ""
-write-host "[advanced] Descarga Personalizada"
-write-host "[more] Opciones avanzadas"
+write-host "[advanced] Customized download"
+write-host "[more] Advanced options"
 $menu = read-host "Select number"
 if($menu -eq "url"){
     write-host ""
@@ -238,10 +240,10 @@ elseif($menu -eq 1){
     clear-host
     write-host "URL: $url"
     write-host ""
-    write-host "Descargando MP3..." -ForegroundColor Cyan
+    write-host "Downloading MP3..." -ForegroundColor Cyan
     yt-dlp -o '/sdcard/Download/patatatube/%(title)s.%(ext)s' --extract-audio --audio-format mp3 $url
     write-host ""
-    write-host "Descarga finalizada" -ForegroundColor Cyan
+    write-host "Download successfully finished" -ForegroundColor Cyan
     exit
 }
 elseif($menu -eq 2){
@@ -250,54 +252,55 @@ elseif($menu -eq 2){
     }
     clear-host
     write-host "URL: $url"
-    write-host "Descargando la mejor version del video" -ForegroundColor Cyan
+    write-host "Downloading your video in the best quality available" -ForegroundColor Cyan
     yt-dlp -S ext:mp4:m4a -o '/sdcard/Download/patatatube/%(title)s.%(ext)s' $url
-    write-host "Descarga finalizada" -ForegroundColor Green
+    write-host "Download successfully finished" -ForegroundColor Green
     exit
 }
 elseif($menu -eq 3){
     write-host ""
-    Write-host "Actualizando PatataTube..." -ForegroundColor Yellow
+    Write-host "Updating PatataTube..." -ForegroundColor Yellow
     write-host ""
     Remove-Item patatatube-power.ps1
     Invoke-WebRequest -uri "https://raw.githubusercontent.com/pokeinalover/PatataTube/main/patatatube-power.ps1" -OutFile patatatube-power.ps1
-    write-host "Actualizacion finalizada" -ForegroundColor Green
+    write-host "Patatatube was successfully updated" -ForegroundColor Green
     exit
 }
 elseif($menu -eq 4){
     write-host ""
     write-host "About PatataTube $ver" -ForegroundColor Magenta
     write-host "Made by pokeinalover and with ContratopDev's help because i'm still learning"
+    write-host "(Mostly him but he's a great teacher)"
     write-host "Stay tuned for more content and stuff on my web page!" 
     write-host "pokeinalover.github.io" 
     Pause
 }
 elseif($menu -eq 5){
     clear-host
-    write-host "Saliendo de patatatube..." -ForegroundColor Cyan
+    write-host "Exiting patatatube..." -ForegroundColor Cyan
     exit
 }
 elseif($menu -eq "more"){
     Clear-Host
     Write-host "Menu avanzado" -ForegroundColor Cyan
     write-host ""
-    Write-host "[repair] Reparar Patatatube Power"
-    Write-host "[debugupdate] Actualiza desde github/contratop"
-    Write-host "[downssh] Descarga el contenido en local y envia por SSH (INESTABLE)"
-    write-host "[AnyPrompt] Menu anterior"
-    $menu2 = read-host "Escribe opcion"
+    Write-host "[repair] Repair Patatatube Power"
+    Write-host "[debugupdate] Update from github/contratop"
+    Write-host "[downssh] Download the content and senc (local) to your SSH (UNESTABLE)"
+    write-host "[AnyPrompt] Previous menu"
+    $menu2 = read-host "Write your option"
     if($menu2 -eq "repair"){
         clear-host
-        write-host "Hey tu, si tu"
-        write-host "Si estas intentando reparar patatatube es por que pasa algo"
-        write-host "Escribe tu feedback en github.com/pokeinalover"
+        write-host "Hey there! You! ...Yeah you!" -ForegroundColor Magenta 
+        write-host "If you're here it's because patatatube needs repairs" -ForegroundColor Magenta 
+        write-host "Send your feedback to github.com/pokeinalover" -ForegroundColor Magenta 
         write-host ""
-        Write-Warning "Al reparar, se reinstalara patatatube y sus dependencias"
-        $continue = read-host "Continuar reparacion? [continue]"
+        Write-Warning "When repairing, patatatube and dependencies will be reinstalled"
+        $continue = read-host "Continue the reapairs? [continue]"
         if($continue -eq "continue"){
-            write-host "Reparando Patatatube..."
+            write-host "Repairing Patatatube..."
             write-host ""
-            write-host "Reinstalando dependencias..."
+            write-host "Reinstalling dependencies..."
             apt update
             apt upgrade -y
             apt install python -y
@@ -309,79 +312,79 @@ elseif($menu -eq "more"){
             python3 -m pip install -U yt-dlp
             Invoke-WebRequest -uri "https://raw.githubusercontent.com/pokeinalover/PatataTube/main/patatatube-power.ps1" -OutFile patatatube-power.ps1
             write-host ""
-            write-host "Reparacion completada" -ForegroundColor Green
+            write-host "Repairs are completed" -ForegroundColor Green
             exit
         }
         else{
-           write-host "Operacion cancelada" -ForegroundColor Yellow
+           write-host "Task cancelled" -ForegroundColor Yellow
            Start-Sleep -s 1
         }
     }
     #####################################################
     elseif($menu2 -eq "downssh"){
         Clear-Host
-        Write-Warning "Esta funcion es experimental"
-        Write-host "Si estas aqui por error, pulsa Control + C"
-        Write-host "de momento solo admitido destinos SSH Windows"
+        Write-Warning "This function is still experimentall"
+        Write-host "If you ended up here by accident, please get out with Control + C"
+        Write-host "Only compatible with SSH Windows for the moment"
         ""
-        Write-host "Solo contenido individual, NO PLAYLIST" -ForegroundColor Yellow
+        Write-host "Only individual content, NO PLAYLIST" -ForegroundColor Yellow
         ""
-        write-host "[1] Musica"
+        write-host "[1] Music"
         write-host "[2] Video"
-        $optionsshdown = read-host "Seleccione una opcion"
+        $optionsshdown = read-host "Pick an option"
         if($optionsshdown -eq 1){
             if(-not($url)){
                 geturl
             }
-            $userssh = read-host "Usuario SSH"
-            $ipssh = read-host "Direccion IP del destino"
-            $archivename = read-host "Nombre del archivo"
+            $userssh = read-host "SSH usser"
+            $ipssh = read-host "IP direction of the destination for the content"
+            $archivename = read-host "File name"
             clear-host
             write-host "URL: $url"
-            write-host "Usuario Destino: $userssh"
-            write-host "IP Destino: $ipssh"
-            write-host "Nombre del archivo: $archivename.mp3" 
+            write-host "Usser destination: $userssh"
+            write-host "IP Destination: $ipssh"
+            write-host "File name: $archivename.mp3" 
             write-host ""
-            write-host "Descargando MP3..." -ForegroundColor Cyan
+            write-host "Downloading MP3..." -ForegroundColor Cyan
             yt-dlp -o "$archivename.%(ext)s" --extract-audio --audio-format mp3 $url
             write-host ""
-            write-host "Descarga finalizada" -ForegroundColor Cyan
+            write-host "Downloaded successfully" -ForegroundColor Cyan
             ""
-            write-host "Intentando enviar el archivo al destino..."
+            write-host "Attempting to send file to destination..."
             scp "$archivename.mp3" $userssh@$ipssh':Desktop'
             Remove-Item "$archivename.mp3"
-            write-host "Entrega finalizada"
+            write-host "Successfully delivered"
             exit
         }
         elseif($optionsshdown -eq 2){
             if(-not($url)){
                 geturl
             }
-            $userssh = read-host "Usuario SSH"
-            $ipssh = read-host "Direccion IP del destino"
-            $archivename = read-host "Nombre del archivo"
+            $userssh = read-host "SSH usser"
+            $ipssh = read-host "IP direction of the destination for the content"
+            $archivename = read-host "File name"
             clear-host
             write-host "URL: $url"
-            write-host "Usuario Destino: $userssh"
-            write-host "IP Destino: $ipssh"
-            write-host "Nombre del archivo: $archivename.mp4" 
+            write-host "Usser destination: $userssh"
+            write-host "IP Destination: $ipssh"
+            write-host "File name: $archivename.mp4" 
             write-host ""
-            write-host "Descargando la mejor version del video" -ForegroundColor Cyan
+            write-host "Downloading your video in the best quality available" -ForegroundColor Cyan
             yt-dlp -S ext:mp4:m4a -o "$archivename.%(ext)s" $url
             write-host ""
-            write-host "Descarga finalizada" -ForegroundColor Cyan
+            write-host "Downloaded successfully" -ForegroundColor Cyan
             ""
-            write-host "Intentando enviar el archivo al destino..."
+            write-host "Attempting to send file to destination..."
             scp "$archivename.mp4" $userssh@$ipssh':Desktop'
             Remove-Item "$archivename.mp4"
             if(test-path entrega.m4a){
                 Remove-Item "$archivename.m4a"
             }
-            write-host "Entrega finalizada"
+            write-host "Successfully delivered"
             exit
         }
         else{
-            Write-Warning "Opcion no soportada"
+            Write-Warning "We apologizze, but this is not an option that's suported"
             exit
         }
     }
@@ -401,14 +404,14 @@ elseif ($menu -eq "advanced"){
     }
     Clear-Host
     write-host "URL: $url"
-    write-host "Obteniendo lista de formatos..." -ForegroundColor Cyan
+    write-host "Obtaining format list..." -ForegroundColor Cyan
     yt-dlp -F $url
     write-host ""
-    write-host "Si hay algun error. escribe [back]" -ForegroundColor Yellow
-    write-host "Tambien puedes [best] para la mejor opcion" -ForegroundColor Cyan
-    $fcode = read-host "Selecciona un formato"
+    write-host "If you see any errors, please write [back]" -ForegroundColor Yellow
+    write-host "You can also [best] for the best option available" -ForegroundColor Cyan
+    $fcode = read-host "Select your format"
     if($fcode -eq "back"){
-        write-host "Revirtiendo cambios..."
+        write-host "Reversing changes..."
         Start-Sleep -s 2
     }
     else{
@@ -421,16 +424,16 @@ elseif ($menu -eq "advanced"){
             write-host "Format Code: $fcode (Manual)"
         }
         write-host ""
-        write-host "Destino: /sdcard/Download/patatatube"
-        write-host "Descargando el contenido..." -ForegroundColor Cyan
+        write-host "Destination: /sdcard/Download/patatatube"
+        write-host "Downloading content..." -ForegroundColor Cyan
         yt-dlp -o '/sdcard/Download/patatatube/%(title)s.%(ext)s' -f $fcode $url
         write-host ""
-        write-host "Descarga finalizada" -ForegroundColor Cyan
+        write-host "Downloaded successfully" -ForegroundColor Cyan
         exit
     }
 }
 else{
-    Write-Warning "opcion no valida"
+    Write-Warning "Not a valid option"
     start-sleep -s 1
 }
 
