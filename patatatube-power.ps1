@@ -324,6 +324,8 @@ elseif($menu -eq "more"){
         Write-host "Si estas aqui por error, pulsa Control + C"
         Write-host "de momento solo admitido destinos SSH Windows"
         ""
+        Write-host "Solo contenido individual, NO PLAYLIST" -ForegroundColor Yellow
+        ""
         write-host "[1] Musica"
         write-host "[2] Video"
         $optionsshdown = read-host "Seleccione una opcion"
@@ -372,7 +374,9 @@ elseif($menu -eq "more"){
             write-host "Intentando enviar el archivo al destino..."
             scp "$archivename.mp4" $userssh@$ipssh':Desktop'
             Remove-Item "$archivename.mp4"
-            Remove-Item "$archivename.m4a"
+            if(test-path entrega.m4a){
+                Remove-Item "$archivename.m4a"
+            }
             write-host "Entrega finalizada"
             exit
         }
