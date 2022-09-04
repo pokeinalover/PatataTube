@@ -1,4 +1,4 @@
-#header pwsh powershell GlaDOS
+#header pwsh powershell GlaDOS PotatOS
 $ver = "1.9"
 Clear-Host
 write-host "Patatatube Power $ver"
