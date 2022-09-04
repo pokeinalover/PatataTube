@@ -1,5 +1,5 @@
 #header pwsh powershell GlaDOS PotatOS uwu
-$ver = "2.0.1"
+$ver = "2.0.2"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -55,7 +55,7 @@ else{
             apt install pip
             write-host "Downloading engine Youtube-DL"
             python3 -m pip install -U yt-dlp # REDOWNLOAD CORE ################################
-            write-host "Re-startpatatatube" -ForegroundColor Cyan
+            write-host "Re-start patatatube" -ForegroundColor Cyan
             exit
         }
         else{
@@ -109,14 +109,14 @@ if(test-path -path /sdcard){
     write-host "Memory Access OK" -ForegroundColor Green
 }
 else{
-    Write-Warning "Memoy not assambled"
+    Write-Warning "Memory not assambled"
     write-host "Use [termux-setup-storage] to reassamble memory outside proot"
     exit
 }
 
 if(test-path -path /sdcard/patatatube){
     Write-Warning "Old version found"
-    write-host "It is required to restablysh the deprecated patatatube directories for patatatube to work correctly"
+    write-host "It is required to restablish the deprecated patatatube directories for patatatube to work correctly"
     write-host "WARNING: All the content in Patatatube de /root /Music y /Movies will be deleted" -ForegroundColor Red
     $proceder = read-host "Reestablish directories in patatatube? [continue]"
     if($proceder -eq "continue"){
@@ -135,7 +135,7 @@ if(test-path -path /sdcard/patatatube){
 }
 elseif(test-path -path /sdcard/Music/patatatube){
     Write-Warning "Old version found"
-    write-host "It is required to restablysh the deprecated patatatube directories for patatatube to work correctly"
+    write-host "It is required to restablish the deprecated patatatube directories for patatatube to work correctly"
     write-host "WARNING: All the content in Patatatube de /root /Music y /Movies will be deleted" -ForegroundColor Red
     $proceder = read-host "Reestablish directories in patatatube? [continue]"
     if($proceder -eq "continue"){
@@ -154,7 +154,7 @@ elseif(test-path -path /sdcard/Music/patatatube){
 }
 elseif(test-path -path /sdcard/Movies/patatatube){
     Write-Warning "Old version found"
-    write-host "It is required to restablysh the deprecated patatatube directories for patatatube to work correctly"
+    write-host "It is required to restablish the deprecated patatatube directories for patatatube to work correctly"
     write-host "WARNING: All the content in Patatatube de /root /Music y /Movies will be deleted" -ForegroundColor Red
     $proceder = read-host "Reestablish directories in patatatube? [continue]"
     if($proceder -eq "continue"){
@@ -218,7 +218,7 @@ if($url){
     write-host "[url] Change URL"
 }
 else{
-    write-host "[url] Stablish URL"
+    write-host "[url] Establish URL"
 }
 Write-host "[1] Music" -ForegroundColor Magenta
 Write-host "[2] Video" 
@@ -270,7 +270,7 @@ elseif($menu -eq 4){
     write-host ""
     write-host "About PatataTube $ver" -ForegroundColor Magenta
     write-host "Made by pokeinalover and with ContratopDev's help because i'm still learning"
-    write-host "(Mostly him but he's a great teacher)"
+    write-host "  (Mostly him but he's a great teacher)"
     write-host "Stay tuned for more content and stuff on my web page!" 
     write-host "pokeinalover.github.io" 
     Pause
@@ -282,7 +282,7 @@ elseif($menu -eq 5){
 }
 elseif($menu -eq "more"){
     Clear-Host
-    Write-host "Menu avanzado" -ForegroundColor Cyan
+    Write-host "Advanced menu" -ForegroundColor Cyan
     write-host ""
     Write-host "[repair] Repair Patatatube Power"
     Write-host "[debugupdate] Update from github/contratop"
