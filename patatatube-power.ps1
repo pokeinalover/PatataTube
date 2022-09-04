@@ -1,5 +1,5 @@
 #header pwsh powershell potatOS
-$ver = "1.7"
+$ver = "1.7.1 (Developer Preview)"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -333,19 +333,21 @@ elseif($menu -eq "more"){
             }
             $userssh = read-host "Usuario SSH"
             $ipssh = read-host "Direccion IP del destino"
+            $archivename = read-host "Nombre del archivo"
             clear-host
             write-host "URL: $url"
             write-host "Usuario Destino: $userssh"
             write-host "IP Destino: $ipssh"
+            write-host "Nombre del archivo: $archivename.mp3" 
             write-host ""
             write-host "Descargando MP3..." -ForegroundColor Cyan
-            yt-dlp -o 'entrega.%(ext)s' --extract-audio --audio-format mp3 $url
+            yt-dlp -o "$archivename.%(ext)s" --extract-audio --audio-format mp3 $url
             write-host ""
             write-host "Descarga finalizada" -ForegroundColor Cyan
             ""
             write-host "Intentando enviar el archivo al destino..."
-            scp entrega.mp3 $userssh@$ipssh':Desktop'
-            #Remove-Item entrega.mp3
+            scp $archivename.mp3 $userssh@$ipssh':Desktop'
+            Remove-Item $archivename.mp3
             write-host "Entrega finalizada"
             exit
         }
@@ -355,19 +357,22 @@ elseif($menu -eq "more"){
             }
             $userssh = read-host "Usuario SSH"
             $ipssh = read-host "Direccion IP del destino"
+            $archivename = read-host "Nombre del archivo"
             clear-host
             write-host "URL: $url"
             write-host "Usuario Destino: $userssh"
             write-host "IP Destino: $ipssh"
+            write-host "Nombre del archivo: $archivename.mp4" 
             write-host ""
             write-host "Descargando la mejor version del video" -ForegroundColor Cyan
-            yt-dlp -S ext:mp4:m4a -o 'entrega.%(ext)s' $url
+            yt-dlp -S ext:mp4:m4a -o "$archivename.%(ext)s" $url
             write-host ""
             write-host "Descarga finalizada" -ForegroundColor Cyan
             ""
             write-host "Intentando enviar el archivo al destino..."
-            scp entrega.mp4 $userssh@$ipssh':Desktop'
-            #Remove-Item entrega.mp4
+            scp $archivename.mp4 $userssh@$ipssh':Desktop'
+            Remove-Item $archivename.mp4
+            Remove-Item $archivename.m4a
             write-host "Entrega finalizada"
             exit
         }
