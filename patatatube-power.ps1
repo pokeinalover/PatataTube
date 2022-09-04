@@ -1,5 +1,5 @@
 #header pwsh powershell potatOS
-$ver = "1.7.2 (Developer Preview)"
+$ver = "1.8"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
