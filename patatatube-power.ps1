@@ -211,7 +211,9 @@ write-host "" -NoNewline
 write-host " (Mostly by Contratop)" -ForegroundColor Green
 write-host ""
 if($url){
-    write-host "URL: $url" -ForegroundColor Cyan
+    write-host "URL: $url" -ForegroundColor DarkCyan
+    $urltitle = Invoke-RestMethod "https://title.mihir.ch/$url"
+    write-host "Titulo: $urltitle" -ForegroundColor Cyan
 }
 write-host ""
 if($url){
