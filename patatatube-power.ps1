@@ -1,5 +1,5 @@
 #header pwsh powershell GlaDOS PotatOS uwu
-$ver = "2.0.2"
+$ver = "2.1"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
