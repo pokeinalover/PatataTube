@@ -1,5 +1,5 @@
 #header pwsh powershell GlaDOS PotatOS uwu
-$ver = "2.1"
+$ver = "2.2"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -213,7 +213,12 @@ write-host ""
 if($url){
     write-host "URL: $url" -ForegroundColor DarkCyan
     $urltitle = Invoke-RestMethod "https://title.mihir.ch/$url"
-    write-host "Titulo: $urltitle" -ForegroundColor Cyan
+    if($?){
+        write-host "Titulo: $urltitle" -ForegroundColor Cyan
+    }
+    else{
+        Write-Warning "No se puede obtener el titulo" -ForegroundColor Yellow
+    }
 }
 write-host ""
 if($url){
