@@ -4,6 +4,10 @@ Clear-Host
 write-host "Patatatube Power $ver"
 #header end
 
+# TODO: Add Torrent Update
+# TODO: Safe Enviroment
+# TODO: Patatatube Safe Updater
+
 #check dependencies
 write-host "Checking system..."
 if(Get-Command "python3"){
