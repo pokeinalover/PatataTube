@@ -1,5 +1,5 @@
 #header pwsh powershell GlaDOS PotatOS uwu
-$ver = "2.7 Development COMPILE 10" 
+$ver = "3.0" 
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -352,60 +352,24 @@ while ($exitmode) {
 	
             start-sleep -s 1
             write-host ""
-	
-            if (test-path -path /sdcard/Download/torrent.torrent) {
-                Write-Host "[0] Torrent.torrent detected, to be downloaded" -ForegroundColor Magenta
+
+            if(-not(test-path -path /sdcard/Download/torrent.torrent)){
+                Write-Warning "torrent.torrent not found"
+                write-host "Rename any torrent file to torrent.torrent and put it in the Download folder"
+                exit
             }
-	
-            Write-host "[1] Select torrent file"
-            write-host "[2] Quit" -ForegroundColor Magenta
-	
-            $torrent = read-host "Select number" 
-            switch ($torrent) {
-                "0" {
-                    write-host "We are downloading your torrent file"
+            else{
+                write-host "torrent.torrent found" -ForegroundColor Green
+                $continue = read-host "Start downloading? [continue]"
+                if($continue -eq "continue"){
+                    write-host "Downloading torrent..." -ForegroundColor Cyan
                     Set-Location /sdcard/Download/patatatube
                     aria2c /sdcard/Download/torrent.torrent
-                    $while1 = $false
-                    break
                 }
-	
-                "1" {
-                    # TODO: LIsta de archivos torrent en download
-                    # TODO: Condicion si el archivo no existe/se ha escrito mal
-                    #TODO: Iniciar descarga
-                    ""
-                    write-host "Torrent files in your Download directory" -ForegroundColor Magenta
-                    if (-not(Get-ChildItem /sdcard/Download/*.torrent)) {
-                        write-warning "No torrent files found"
-                        exit
-                    }
-                    else{
-                        Get-ChildItem /sdcard/Download/*.torrent | Select-Object FullName # ! ME CAGO EN TODO
-                    }
-                    $torrentfile = read-host "Select your torrent file"
-	                
-                    if (-not(Test-Path -path /sdcard/Download/$torrentfile)) {
-                        Write-Warning "The file does not exist"
-                        Start-sleep -s 3
-                        # * Volver atras en el Bucle
-                    }
-                    else {
-                        write-host "We are downloading your torrent file"
-                        Set-Location /sdcard/Download/patatatube
-                        aria2c /sdcard/Download/$torrentfile
-                        $while1 = $false
-                        break
-                    }
-                }
-                
-
-                "2" {
-                    write-host "Exiting patatatube..." -ForegroundColor Cyan
+                else{
+                    write-warning "Cancelled"
                     exit
                 }
-	
-	
             }
 	
         }
