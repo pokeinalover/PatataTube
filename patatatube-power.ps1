@@ -1,5 +1,5 @@
 #header pwsh powershell GlaDOS PotatOS uwu
-$ver = "2.4 Development"
+$ver = "2.5 Development COMPILE 9" 
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -379,6 +379,9 @@ while ($exitmode) {
                     if (-not(Get-ChildItem /sdcard/Download/*.torrent)) {
                         write-warning "No torrent files found"
                         exit
+                    }
+                    else{
+                        Get-ChildItem /sdcard/Download/*.torrent
                     }
                     $torrentfile = read-host "Select your torrent file"
 	                
