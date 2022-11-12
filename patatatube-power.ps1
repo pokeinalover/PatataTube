@@ -1,5 +1,5 @@
 #header pwsh powershell GlaDOS PotatOS uwu
-$ver = "2.3 Development"
+$ver = "2.4 Development"
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -293,6 +293,7 @@ while ($exitmode) {
     }
 
     elseif ($menu -eq "Torrent") {
+        # * Torrent Mode ###############################################################
         $while1 = $true
         while ($while1) {
             Clear-Host
@@ -306,15 +307,25 @@ while ($exitmode) {
 	
 	
             if (-not(Get-Command aria2c -ErrorAction SilentlyContinue)) {
-                write-host "Installing aria2c..."
-                apt install aria2 -y
-                if ($?) {
-                    write-host "Aria2c installed successfully" -ForegroundColor Green
+                Write-Warning "Aria2c is not installed"
+                $continue = read-host "Install aria2c? [continue]"
+                if ($continue -eq "continue") {
+                    write-host "Installing aria2c..."
+                    apt-get update
+                    apt-get install aria2 -y
+                    if ($?) {
+                        write-host "Aria2c installed successfully" -ForegroundColor Green
+                    }
+                    else {
+                        Write-Warning "Aria2c installation failed"
+                        exit
+                    }
                 }
-                else {
-                    Write-Warning "Aria2c installation failed"
+                else{
+                    Write-Warning "Aria2c is required to continue"
                     exit
                 }
+
             }
             else {
                 write-host "aria2c was installed successfully" -ForegroundColor Green
@@ -365,7 +376,7 @@ while ($exitmode) {
                     #TODO: Iniciar descarga
                     ""
                     write-host "Torrent files in your Download directory" -ForegroundColor Magenta
-                    if(-not(Get-ChildItem /sdcard/Download/*.torrent)){
+                    if (-not(Get-ChildItem /sdcard/Download/*.torrent)) {
                         write-warning "No torrent files found"
                         exit
                     }
