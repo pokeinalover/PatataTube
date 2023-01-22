@@ -35,7 +35,7 @@ Used youtube-dl fork (yt-dlp)
 
 
 # PatataTube Lite (SH Version For Non-PowerShelled Termux)
-Thsi is not a full version, for a Full Version use PatataTube Power
+This is not a full version, for a Full Version use PatataTube Power
 
 ## Install PatataTube Lite
 
