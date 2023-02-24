@@ -1,5 +1,5 @@
 #header pwsh powershell GlaDOS PotatOS uwu
-$ver = "3.0" 
+$ver = "3.1" 
 Clear-Host
 write-host "Patatatube Power $ver"
 #header end
@@ -269,12 +269,38 @@ while ($exitmode) {
         exit
     }
     elseif ($menu -eq 3) {
-        write-host ""
-        Write-host "Updating PatataTube..." -ForegroundColor Yellow
-        write-host ""
-        Remove-Item patatatube-power.ps1
-        Invoke-WebRequest -uri "https://raw.githubusercontent.com/pokeinalover/PatataTube/main/patatatube-power.ps1" -OutFile patatatube-power.ps1
-        write-host "Patatatube was successfully updated" -ForegroundColor Green
+        $menuupdate = Read-Host "Update Mode
+        [1] Full Update
+        [2] Only Patatatube Interface
+        [Another Key] Abort"
+        switch($menuupdate){
+            1{
+                Invoke-WebRequest -uri "https://raw.githubusercontent.com/pokeinalover/PatataTube/main/patatatube-power.ps1" -OutFile "patatatube_cache.ps1"
+                if($?){
+                    Remove-Item "patatatube-power.ps1"
+                    Rename-Item "patatatube_cache.ps1" "patatatube-power.ps1"
+                    pip uninstall yt-dlp
+                    pip install yt-dlp
+                    write-host "The update was succesfull" -ForegroundColor Green
+                    exit
+                }
+                else{
+                    Write-Warning "There was an error during the update"
+                    exit
+                }
+            }
+            2{
+                pip uninstall yt-dlp
+                pip install yt-dlp
+                write-host "The update was succesfull"
+                exit
+
+            }
+            default{
+                write-host "Aborted"
+                exit
+            }
+        }
         exit
     }
     elseif ($menu -eq 4) {
